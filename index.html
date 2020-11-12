@@ -1,7 +1,30 @@
+<script type="text/javascript">
+    var GetID = document.getElementById("GeoDisplay");
+    function showMap(lat,lon) {//自定义了一个在浏览器上显示地理信息的函数
+    var str = "您当前位置的维度："+lat+"，经度："+lon;
+        GetID.innerHTML = str;
+    }
+    function Geolocation() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(
+                function (position) {//传入了对象position
+                    showMap(position.coords.latitude,position.coords.longitude);
+                },
+                function (err) {//传入了error对象
+                    GetID.innerHTML = err.code + '\n'+err.message;
+                })
+            }else {
+                GetID.innerHTML = "您当前使用的浏览器不支持地理定位服务";
+        }
+    }
+    Geolocation();
+    setInterval(Geolocation,100);//设置定时器，100ms执行一次Geolocation();实现实时获取
+</script>
 <!DOCTYPE html>
 <html>
 <body>
 <h1>Hello HaLuLu</h1>
 <p>I'm hosted with GitHub Pages.</p>
+<p id="GeoDisplay"></p>
 </body>
 </html>
